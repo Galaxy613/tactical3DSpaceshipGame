@@ -1,0 +1,16 @@
+[gd_resource type="SpatialMaterial" load_steps=3 format=2]
+
+[ext_resource path="res://textures/capital-ship-hull_texture.png" type="Texture" id=1]
+[ext_resource path="res://textures/capital-ship-hull_texture_emission.png" type="Texture" id=2]
+
+[resource]
+resource_name = "capitalShipHullTexture"
+albedo_color = Color( 0.789854, 0.813333, 0.694044, 1 )
+albedo_texture = ExtResource( 1 )
+metallic = 0.166574
+emission_enabled = true
+emission = Color( 0, 0, 0, 1 )
+emission_energy = 5.0
+emission_operator = 0
+emission_on_uv2 = false
+emission_texture = ExtResource( 2 )

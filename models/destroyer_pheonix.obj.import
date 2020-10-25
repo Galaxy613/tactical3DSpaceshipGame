@@ -1,0 +1,19 @@
+[remap]
+
+importer="wavefront_obj"
+type="Mesh"
+path="res://.import/destroyer_pheonix.obj-a948b50569380b7c59a57a5f68ac409e.mesh"
+
+[deps]
+
+files=[ "res://.import/destroyer_pheonix.obj-a948b50569380b7c59a57a5f68ac409e.mesh" ]
+
+source_file="res://models/destroyer_pheonix.obj"
+dest_files=[ "res://.import/destroyer_pheonix.obj-a948b50569380b7c59a57a5f68ac409e.mesh", "res://.import/destroyer_pheonix.obj-a948b50569380b7c59a57a5f68ac409e.mesh" ]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3( 1, 1, 1 )
+offset_mesh=Vector3( 0, 0, 0 )
+optimize_mesh=true

@@ -1,0 +1,19 @@
+[remap]
+
+importer="wavefront_obj"
+type="Mesh"
+path="res://.import/support_saiyoyama_1.obj-70e6bb469d851b9d45fd4107f142e284.mesh"
+
+[deps]
+
+files=[ "res://.import/support_saiyoyama_1.obj-70e6bb469d851b9d45fd4107f142e284.mesh" ]
+
+source_file="res://models/support_saiyoyama_1.obj"
+dest_files=[ "res://.import/support_saiyoyama_1.obj-70e6bb469d851b9d45fd4107f142e284.mesh", "res://.import/support_saiyoyama_1.obj-70e6bb469d851b9d45fd4107f142e284.mesh" ]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3( 1, 1, 1 )
+offset_mesh=Vector3( 0, 0, 0 )
+optimize_mesh=true

@@ -1,0 +1,27 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://ships/carrier_Boxen.tscn" type="PackedScene" id=1]
+[ext_resource path="res://ships/fighter_headhunter.tscn" type="PackedScene" id=2]
+[ext_resource path="res://ships/fighter_dominator.tscn" type="PackedScene" id=3]
+[ext_resource path="res://ships/support_saiyoyama.tscn" type="PackedScene" id=4]
+[ext_resource path="res://ships/destroyer_phoenix.tscn" type="PackedScene" id=5]
+
+[node name="Spatial" type="Spatial"]
+
+[node name="carrier_Boxen" parent="." instance=ExtResource( 1 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -30.1579, -0.385251, -101.926 )
+
+[node name="destroyer_phoenix" parent="." instance=ExtResource( 5 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -13.7902, 0, -11.4369 )
+
+[node name="support_saiyoyama" parent="." instance=ExtResource( 4 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -11.4369 )
+
+[node name="fighter_headhunter" parent="." instance=ExtResource( 2 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.503451, 0, 0 )
+
+[node name="fighter_headhunter2" parent="." instance=ExtResource( 2 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -9.79496, 1.24621, -5.52096 )
+
+[node name="fighter_dominator" parent="." instance=ExtResource( 3 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.544778, 0, 0 )

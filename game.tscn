@@ -1,34 +1,54 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=9 format=2]
 
-[ext_resource path="res://fighter_dominator.obj" type="ArrayMesh" id=1]
-[ext_resource path="res://headhunter_uvc.obj" type="ArrayMesh" id=2]
-[ext_resource path="res://carrier_Boxen.obj" type="ArrayMesh" id=3]
+[ext_resource path="res://ships/fighter_dominator.tscn" type="PackedScene" id=1]
+[ext_resource path="res://ships/carrier_Boxen.tscn" type="PackedScene" id=2]
+[ext_resource path="res://skybox/SkyBox4.tscn" type="PackedScene" id=3]
+[ext_resource path="res://ships/fighter_headhunter.tscn" type="PackedScene" id=4]
+[ext_resource path="res://models/Star.tscn" type="PackedScene" id=5]
+[ext_resource path="res://ships/support_saiyoyama.tscn" type="PackedScene" id=6]
+[ext_resource path="res://ships/destroyer_phoenix.tscn" type="PackedScene" id=7]
+[ext_resource path="res://automaticMovingForward.gd" type="Script" id=8]
 
 [node name="Spatial" type="Spatial"]
 
-[node name="fighter_dominator" type="MeshInstance" parent="."]
-mesh = ExtResource( 1 )
-material/0 = null
-material/1 = null
-material/2 = null
-material/3 = null
-material/4 = null
-material/5 = null
-material/6 = null
-material/7 = null
-material/8 = null
-material/9 = null
+[node name="fighter_dominator" parent="." instance=ExtResource( 1 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -2.35871, 0, 0 )
 
-[node name="headhunter_uvc" type="MeshInstance" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1.49499, 0, 0 )
-mesh = ExtResource( 2 )
-material/0 = null
-material/1 = null
-material/2 = null
-material/3 = null
+[node name="playerShip" parent="." instance=ExtResource( 4 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 2.433, 0, -89.2919 )
+isPlayer = true
 
-[node name="carrier_Boxen" type="MeshInstance" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -5.35347, 1.49415, 2.64063 )
-mesh = ExtResource( 3 )
-material/0 = null
-material/1 = null
+[node name="Camera" type="Camera" parent="playerShip"]
+transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0.416979, -1.13371 )
+near = 0.02
+far = 10000.0
+
+[node name="carrier_Boxen" parent="." instance=ExtResource( 2 )]
+transform = Transform( -0.967731, 0, 0.251985, 0, 1, 0, -0.251985, 0, -0.967731, -30.144, 1.61228, 35.6874 )
+script = ExtResource( 8 )
+
+[node name="Skybox4" parent="." instance=ExtResource( 3 )]
+
+[node name="Star" parent="." instance=ExtResource( 5 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -42.9998, 80.2081, -1266.58 )
+omni_range = 15000.0
+
+[node name="destroyer_phoenix" parent="." instance=ExtResource( 7 )]
+transform = Transform( -0.967731, 0, 0.251985, 0, 1, 0, -0.251985, 0, -0.967731, -45.1617, 27.4562, 42.9826 )
+script = ExtResource( 8 )
+
+[node name="fighter_headhunter" parent="." instance=ExtResource( 4 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 6.08227, 8.76917, -81.7319 )
+maxSpeed = 300.0
+
+[node name="fighter_headhunter2" parent="." instance=ExtResource( 4 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 7.13038, 9.29616, -84.0555 )
+maxSpeed = 300.0
+
+[node name="support_saiyoyama" parent="." instance=ExtResource( 6 )]
+transform = Transform( -0.409668, 0, -0.912234, 0, 1, 0, 0.912234, 0, -0.409668, 11.2837, -3.44096, -68.9064 )
+script = ExtResource( 8 )
+
+[node name="support_saiyoyama2" parent="." instance=ExtResource( 6 )]
+transform = Transform( -0.409668, 0, -0.912234, 0, 1, 0, 0.912234, 0, -0.409668, 11.2837, 9.66231, -58.8639 )
+script = ExtResource( 8 )

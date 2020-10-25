@@ -1,0 +1,19 @@
+[remap]
+
+importer="wavefront_obj"
+type="Mesh"
+path="res://.import/carrier_Boxen.obj-6120021cdb60ef1c7dc585b98b7ed48b.mesh"
+
+[deps]
+
+files=[ "res://.import/carrier_Boxen.obj-6120021cdb60ef1c7dc585b98b7ed48b.mesh" ]
+
+source_file="res://models/carrier_Boxen.obj"
+dest_files=[ "res://.import/carrier_Boxen.obj-6120021cdb60ef1c7dc585b98b7ed48b.mesh", "res://.import/carrier_Boxen.obj-6120021cdb60ef1c7dc585b98b7ed48b.mesh" ]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3( 1, 1, 1 )
+offset_mesh=Vector3( 0, 0, 0 )
+optimize_mesh=true
