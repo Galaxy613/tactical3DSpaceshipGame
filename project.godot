@@ -13,9 +13,15 @@ _global_script_classes=[ {
 "class": "TrailRenderer",
 "language": "GDScript",
 "path": "res://scripts/TrailRender.gd"
+}, {
+"base": "Spatial",
+"class": "Turret",
+"language": "GDScript",
+"path": "res://scripts/Turret.gd"
 } ]
 _global_script_class_icons={
-"TrailRenderer": ""
+"TrailRenderer": "",
+"Turret": ""
 }
 
 [application]

@@ -8,14 +8,14 @@
 [node name="turret_large1" parent="." instance=ExtResource( 1 )]
 
 [node name="turret_large2" parent="." instance=ExtResource( 1 )]
-transform = Transform( 1, 0, 0, 0, 0.936305, -0.351188, 0, 0.351188, 0.936305, -1.0232, 0, 0 )
+transform = Transform( 1, 0, 0, 0, 0.707107, -0.707107, 0, 0.707107, 0.707107, -1.0232, 0, 0 )
 
 [node name="turret_large3" parent="." instance=ExtResource( 1 )]
-transform = Transform( 0.896873, 0.442289, 0, -0.442289, 0.896873, 0, 0, 0, 1, -2.12004, 0, 0 )
+transform = Transform( 0.707107, 0.707107, 0, -0.707107, 0.707107, 0, 0, 0, 1, -2.12004, 0, 0 )
 
 [node name="fighter_headhunter" parent="." instance=ExtResource( 2 )]
 transform = Transform( -0.16359, -0.426982, -0.889339, 0.703026, 0.581974, -0.408731, 0.692093, -0.692093, 0.204974, 32.1391, 18.1096, 9.51465 )
 
 [node name="Camera" type="Camera" parent="."]
-transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -0.922166, 0.425711, -0.750106 )
+transform = Transform( -1, 0, -8.74228e-08, -2.42671e-08, 0.960702, 0.277583, 8.39872e-08, 0.277583, -0.960702, -0.922166, 0.733319, -0.750106 )
 fov = 106.875

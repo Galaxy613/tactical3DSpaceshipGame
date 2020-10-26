@@ -6,8 +6,8 @@ signal fire_bullet
 var bullet_to_fire = preload("res://ships/green_laser.tscn")
 export var bullet_speed = 1500
 
-onready var body = $turret_large1_body
-onready var barrel = $turret_large1_body/barrel
+onready var body = $body
+onready var barrel = $body/barrel
 
 var target:KinematicBody
 var targetting = false
@@ -30,7 +30,26 @@ func _physics_process(delta):
 
 func aim():
 	#var desiredRotation = barrel.global_transform.looking_at(target.global_transform.origin, Vector3.UP) # or V3(0,1,0)
-	var desiredRotation = target.global_transform.looking_at(barrel.global_transform.origin, Vector3.UP) # or V3(0,1,0)
+	var desiredRotation = self.global_transform.looking_at(target.global_transform.origin, self.global_transform.basis.y)
+	var desiredRotationQuat = desiredRotation.basis.get_rotation_quat()
+	
+	var euler = desiredRotation.basis.get_euler()
+	body.global_transform.basis = Basis()
+	barrel.global_transform.basis = Basis()
+	barrel.rotate_object_local(body.global_transform.basis.x, euler.x)
+	body.rotate_object_local(body.global_transform.basis.y, euler.y)
+
+func very_simple_aim():
+	#var desiredRotation = barrel.global_transform.looking_at(target.global_transform.origin, Vector3.UP) # or V3(0,1,0)
+	var desiredRotation = self.global_transform.looking_at(target.global_transform.origin, self.global_transform.basis.y)
+	var desiredRotationQuat = desiredRotation.basis.get_rotation_quat()
+	
+	#barrel.rotation.x = 
+	body.global_transform.basis = desiredRotation.basis
+
+func old_aim():
+	#var desiredRotation = barrel.global_transform.looking_at(target.global_transform.origin, Vector3.UP) # or V3(0,1,0)
+	var desiredRotation = target.global_transform.looking_at(barrel.global_transform.origin, self.global_transform.basis.y)
 	var desiredRotationQuat = desiredRotation.basis.get_rotation_quat()
 	var barrelRotationQuat = barrel.global_transform.basis.get_rotation_quat()
 	var rotatedQuat = Quat(barrelRotationQuat).slerp(desiredRotationQuat, 0.02)
@@ -42,8 +61,9 @@ func aim():
 	var barrelRotateX = rotatedEuler.x
 	if barrelRotateX > 0:
 		barrelRotateX = 0
-	print(barrelRotateX)
+	#print(barrelRotateX)
 	barrel.rotation.x = barrelRotateX
+	
 	body.rotation.y = rotatedEuler.y
 
 
