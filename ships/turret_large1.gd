@@ -53,19 +53,16 @@ func aim():
 	var desiredRotation = barrel.global_transform.looking_at(target.global_transform.origin, Vector3.UP)
 	var desiredRotationQuat = desiredRotation.basis.get_rotation_quat()
 	var barrelRotationQuat = barrel.global_transform.basis.get_rotation_quat()
-	var rotatedQuat = Quat(barrelRotationQuat).slerp(desiredRotationQuat, 0.2)
-	#barrel.global_transform.basis = Basis(rotatedQuat)
-	var rotatedEuler = Basis(rotatedQuat).get_euler()
-	#barrel.rotate_x(rotatedEuler.x)
-	#body.rotate_y(rotatedEuler.y)
+	var rotatedQuat = Quat(barrelRotationQuat).slerp(desiredRotationQuat, 0.02)
 	
-	var barrelRotateX = rotatedEuler.x
+	var rotatedEuler = Basis(rotatedQuat).get_euler()
+	
+	var barrelRotateX = rotatedEuler.x + self.transform.basis.get_euler().x
 	if barrelRotateX > 0:
 		barrelRotateX = 0
-	#print(barrelRotateX)
+	print(barrelRotateX)
 	barrel.rotation.x = barrelRotateX
-	
-	body.rotation.y = rotatedEuler.y
+	body.rotation.y = rotatedEuler.y + self.transform.basis.get_euler().y
 
 
 func _on_ScanTimer_timeout():

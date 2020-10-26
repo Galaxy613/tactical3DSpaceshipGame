@@ -1,6 +1,6 @@
 ### Turret.gd
-### Author @https://github.com/Barelos
-### Taken from https://github.com/IndieQuest/ModularTurret
+### Originial Author @https://github.com/Barelos
+### Modified from https://github.com/IndieQuest/ModularTurret
 
 extends Spatial
 class_name Turret
@@ -22,6 +22,7 @@ export var muzzle_velocity: float = 50
 export var min_elevation: float = -10
 export var max_elevation: float = 60
 
+export var bullet_to_fire = preload("res://ships/green_laser.tscn")
 
 ################################
 # PARAMS
@@ -30,6 +31,8 @@ export var max_elevation: float = 60
 onready var body: Spatial = get_node(body_path)
 onready var head: Spatial = get_node(head_path)
 onready var target: Spatial = get_node(target_path)
+
+onready var scanTimer = $ScanTimer
 # movement
 onready var elevation_speed: float = deg2rad(elevation_speed_deg)
 onready var rotation_speed: float = deg2rad(rotation_speed_deg)
@@ -58,15 +61,46 @@ func _process(delta: float) -> void:
 	# if not active do nothing
 	if not active:
 		return
-	# update target location
-	_update_target_location()
-	# move
-	_rotate(delta)
-	_elevate(delta)
+	if target != null:
+		# update target location
+		_update_target_location()
+		# move
+		_rotate(delta)
+		_elevate(delta)
+
+######
+# SIGNAL FUNCTIONS
+######
+
+func _on_ScanTimer_timeout():
+	## Check if the target has invalidated itself.
+	if target:
+		if target.global_transform.origin.distance_to(self.global_transform.origin) > 100:
+			target = null
+	
+	## If target is still valid, ditch this method.
+	if target:
+		return
+	
+	## If not, do the scan.
+	var closest = null
+	var closestDist = 100.0
+	for node in get_tree().get_nodes_in_group("class_fighter"):
+		var dist = node.global_transform.origin.distance_to(self.global_transform.origin)
+		
+		print(dist)
+		if dist < 100:
+			closest = node
+			closestDist = dist
+	
+	target = closest
+	
+	if target == null:
+		pass
 
 
 ################################
-# MAIN FUNCTIONS
+# TRACKING FUNCTIONS
 ################################
 func _update_target_location() -> void:
 	current_target = target.global_transform.origin
@@ -84,7 +118,7 @@ func _rotate(delta: float) -> void:
 func _elevate(delta: float) -> void:
 	# get displacment
 	var x_target = _get_global_x()
-	var x_diff = x_target - head.transform.basis.get_euler().x
+	var x_diff = x_target - head.global_transform.basis.get_euler().x
 	var final_x = sign(x_diff) * min(elevation_speed * delta, abs(x_diff))
 	# elevate head
 	head.rotate_x(final_x + body.transform.basis.get_euler().x)
