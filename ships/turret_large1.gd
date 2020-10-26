@@ -28,7 +28,17 @@ func _physics_process(delta):
 	aim()
 	pass
 
-func aim():
+func _aim():
+	var desiredRotation = self.global_transform.looking_at(target.global_transform.origin, self.global_transform.basis.y)
+	var desiredRotationQuat = desiredRotation.basis.get_rotation_quat()
+	
+	var euler = desiredRotation.basis.get_euler()
+	body.global_transform.basis = self.transform.basis
+	barrel.global_transform.basis = self.transform.basis
+	barrel.rotate_object_local(body.global_transform.basis.x, euler.x)
+	body.rotate_object_local(body.global_transform.basis.y, euler.y)
+
+func very_simple_aim():
 	#var desiredRotation = barrel.global_transform.looking_at(target.global_transform.origin, Vector3.UP) # or V3(0,1,0)
 	var desiredRotation = self.global_transform.looking_at(target.global_transform.origin, self.global_transform.basis.y)
 	var desiredRotationQuat = desiredRotation.basis.get_rotation_quat()
@@ -39,20 +49,11 @@ func aim():
 	barrel.rotate_object_local(body.global_transform.basis.x, euler.x)
 	body.rotate_object_local(body.global_transform.basis.y, euler.y)
 
-func very_simple_aim():
-	#var desiredRotation = barrel.global_transform.looking_at(target.global_transform.origin, Vector3.UP) # or V3(0,1,0)
-	var desiredRotation = self.global_transform.looking_at(target.global_transform.origin, self.global_transform.basis.y)
-	var desiredRotationQuat = desiredRotation.basis.get_rotation_quat()
-	
-	#barrel.rotation.x = 
-	body.global_transform.basis = desiredRotation.basis
-
-func old_aim():
-	#var desiredRotation = barrel.global_transform.looking_at(target.global_transform.origin, Vector3.UP) # or V3(0,1,0)
-	var desiredRotation = target.global_transform.looking_at(barrel.global_transform.origin, self.global_transform.basis.y)
+func aim():
+	var desiredRotation = barrel.global_transform.looking_at(target.global_transform.origin, Vector3.UP)
 	var desiredRotationQuat = desiredRotation.basis.get_rotation_quat()
 	var barrelRotationQuat = barrel.global_transform.basis.get_rotation_quat()
-	var rotatedQuat = Quat(barrelRotationQuat).slerp(desiredRotationQuat, 0.02)
+	var rotatedQuat = Quat(barrelRotationQuat).slerp(desiredRotationQuat, 0.2)
 	#barrel.global_transform.basis = Basis(rotatedQuat)
 	var rotatedEuler = Basis(rotatedQuat).get_euler()
 	#barrel.rotate_x(rotatedEuler.x)

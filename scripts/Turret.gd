@@ -87,7 +87,7 @@ func _elevate(delta: float) -> void:
 	var x_diff = x_target - head.transform.basis.get_euler().x
 	var final_x = sign(x_diff) * min(elevation_speed * delta, abs(x_diff))
 	# elevate head
-	head.rotate_x(final_x)
+	head.rotate_x(final_x + body.transform.basis.get_euler().x)
 	# clamp
 	head.rotation_degrees.x = clamp(
 		head.rotation_degrees.x,
@@ -98,7 +98,7 @@ func _elevate(delta: float) -> void:
 ################################
 # HELPER FUNCTIONS
 ################################
-func _get_ttc() -> float:
+func _get_timeToCollision() -> float:
 	# calculate everything once
 	var to_target = target.global_transform.origin - head.global_transform.origin
 	var target_velocity = target.linear_velocity
@@ -129,17 +129,18 @@ func _get_ttc() -> float:
 	# make sure t is possitive
 	return max(0.0, t)
 
-func _get_lxz() -> Vector3:
-	return global_transform.basis.x + global_transform.basis.z
 
 func _get_local_y() -> float:
 	var local_target = head.to_local(current_target)
-	var y_angle = global_transform.basis.z.angle_to(local_target * _get_lxz())
+	var y_angle = Vector3.FORWARD.angle_to(local_target * Vector3(1, 0, 1))
 	return y_angle * -sign(local_target.x)
 
 
 func _get_global_x() -> float:
 	var local_target = current_target - head.global_transform.origin
-	return (local_target * _get_lxz()).angle_to(local_target) * sign(local_target.y)
+	return (local_target * Vector3(1, 0, 1)).angle_to(local_target) * sign(local_target.y)
+
+
+
 
 

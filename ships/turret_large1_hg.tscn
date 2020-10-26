@@ -1,7 +1,7 @@
 [gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://models/capitalShipHull.tres" type="Material" id=1]
-[ext_resource path="res://scripts/Turret.gd" type="Script" id=2]
+[ext_resource path="res://ships/turret_large1.gd" type="Script" id=2]
 
 [sub_resource type="ArrayMesh" id=1]
 surfaces/0 = {
@@ -63,8 +63,6 @@ surfaces/0 = {
 
 [node name="turret_large1" type="Spatial"]
 script = ExtResource( 2 )
-body_path = NodePath("body")
-head_path = NodePath("body/barrel")
 
 [node name="turret_large1_base" type="MeshInstance" parent="."]
 mesh = SubResource( 1 )

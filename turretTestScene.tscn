@@ -6,12 +6,15 @@
 [node name="Spatial" type="Spatial"]
 
 [node name="turret_large1" parent="." instance=ExtResource( 1 )]
+target_path = NodePath("../fighter_headhunter")
 
 [node name="turret_large2" parent="." instance=ExtResource( 1 )]
 transform = Transform( 1, 0, 0, 0, 0.707107, -0.707107, 0, 0.707107, 0.707107, -1.0232, 0, 0 )
+target_path = NodePath("../fighter_headhunter")
 
 [node name="turret_large3" parent="." instance=ExtResource( 1 )]
 transform = Transform( 0.707107, 0.707107, 0, -0.707107, 0.707107, 0, 0, 0, 1, -2.12004, 0, 0 )
+target_path = NodePath("../fighter_headhunter")
 
 [node name="fighter_headhunter" parent="." instance=ExtResource( 2 )]
 transform = Transform( -0.16359, -0.426982, -0.889339, 0.703026, 0.581974, -0.408731, 0.692093, -0.692093, 0.204974, 32.1391, 18.1096, 9.51465 )
