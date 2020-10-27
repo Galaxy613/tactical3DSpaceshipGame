@@ -24,8 +24,16 @@ target_path = NodePath("../fighter_headhunter")
 transform = Transform( -0.16359, -0.426982, -0.889339, 0.703026, 0.581974, -0.408731, 0.692093, -0.692093, 0.204974, 32.1391, 18.1096, 9.51465 )
 
 [node name="Camera" type="Camera" parent="."]
-transform = Transform( -0.707107, 0.0963447, -0.700513, -1.19115e-08, 0.990674, 0.136252, 0.707107, 0.0963447, -0.700512, -7.45906, 0.733, -0.75 )
+transform = Transform( -0.707107, 0.0963447, -0.700513, -1.19115e-08, 0.990674, 0.136252, 0.707107, 0.0963447, -0.700512, -5.98092, 0.733, 0.511664 )
+current = true
 fov = 90.0
 
 [node name="destroyer_phoenix" parent="." instance=ExtResource( 3 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.41482, -1.95626 )
+
+[node name="Camera2" type="Camera" parent="."]
+transform = Transform( 1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 7.89621, 27.3669, 11.0692 )
+
+[node name="Camera3" type="Camera" parent="."]
+transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -1.78554, -2.91735, -1.88957 )
+current = true

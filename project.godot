@@ -27,7 +27,7 @@ _global_script_class_icons={
 [application]
 
 config/name="3DSolaranceTest"
-run/main_scene="res://turretTestScene.tscn"
+run/main_scene="res://phoenixTurretTestScene.tscn"
 config/icon="res://icon.png"
 
 [input]

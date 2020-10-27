@@ -118,14 +118,8 @@ func _rotate(delta: float) -> void:
 func _elevate(delta: float) -> void:
 	# get displacment
 	var x_target = _get_real_global_x()
-	head.rotation.x = x_target
 	
-	return
-	var x_diff = x_target - head.global_transform.basis.get_euler().x
-	var final_x = sign(x_diff) * min(elevation_speed * delta, abs(x_diff))
-	# elevate head
-	head.rotate_x(final_x + body.transform.basis.get_euler().x)
-	# clamp
+	head.rotation.x = x_target
 	head.rotation_degrees.x = clamp(
 		head.rotation_degrees.x,
 		min_elevation, max_elevation
@@ -151,7 +145,7 @@ func _get_global_x() -> float:
 
 func _get_real_global_x() -> float:
 	var local_target = target.global_transform.origin - head.global_transform.origin
-	local_target = self.transform.basis.xform(local_target)
+	local_target = self.transform.basis.xform_inv(local_target)
 	return (local_target * Vector3(1, 0, 1)).angle_to(local_target) * sign(local_target.y)
 	##return (local_target * _get_xy()).angle_to(local_target) * sign(local_target.y)
 
