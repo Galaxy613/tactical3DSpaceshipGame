@@ -117,7 +117,10 @@ func _rotate(delta: float) -> void:
 
 func _elevate(delta: float) -> void:
 	# get displacment
-	var x_target = _get_global_x()
+	var x_target = _get_real_global_x()
+	head.rotation.x = x_target
+	
+	return
 	var x_diff = x_target - head.global_transform.basis.get_euler().x
 	var final_x = sign(x_diff) * min(elevation_speed * delta, abs(x_diff))
 	# elevate head
@@ -132,6 +135,28 @@ func _elevate(delta: float) -> void:
 ################################
 # HELPER FUNCTIONS
 ################################
+
+func _get_xy() -> Vector3:
+	return self.global_transform.basis.x.normalized() + self.global_transform.basis.z.normalized()
+
+func _get_local_y() -> float:
+	var local_target = head.to_local(current_target)
+	var y_angle = Vector3.FORWARD.angle_to(local_target * Vector3(1, 0, 1))
+	return y_angle * -sign(local_target.x)
+
+func _get_global_x() -> float:
+	var local_target = current_target - head.global_transform.origin
+	return (local_target * Vector3(1, 0, 1)).angle_to(local_target) * sign(local_target.y)
+	##return (local_target * _get_xy()).angle_to(local_target) * sign(local_target.y)
+
+func _get_real_global_x() -> float:
+	var local_target = target.global_transform.origin - head.global_transform.origin
+	local_target = self.transform.basis.xform(local_target)
+	return (local_target * Vector3(1, 0, 1)).angle_to(local_target) * sign(local_target.y)
+	##return (local_target * _get_xy()).angle_to(local_target) * sign(local_target.y)
+
+
+
 func _get_timeToCollision() -> float:
 	# calculate everything once
 	var to_target = target.global_transform.origin - head.global_transform.origin
@@ -162,19 +187,5 @@ func _get_timeToCollision() -> float:
 		t = t2
 	# make sure t is possitive
 	return max(0.0, t)
-
-
-func _get_local_y() -> float:
-	var local_target = head.to_local(current_target)
-	var y_angle = Vector3.FORWARD.angle_to(local_target * Vector3(1, 0, 1))
-	return y_angle * -sign(local_target.x)
-
-
-func _get_global_x() -> float:
-	var local_target = current_target - head.global_transform.origin
-	return (local_target * Vector3(1, 0, 1)).angle_to(local_target) * sign(local_target.y)
-
-
-
 
 

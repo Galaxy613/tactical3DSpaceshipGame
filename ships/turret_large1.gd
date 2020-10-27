@@ -52,7 +52,7 @@ func very_simple_aim():
 func aim():
 	var desiredRotation = barrel.global_transform.looking_at(target.global_transform.origin, Vector3.UP)
 	var desiredRotationQuat = desiredRotation.basis.get_rotation_quat()
-	var barrelRotationQuat = barrel.global_transform.basis.get_rotation_quat()
+	var barrelRotationQuat : Quat = barrel.global_transform.basis.get_rotation_quat()
 	var rotatedQuat = Quat(barrelRotationQuat).slerp(desiredRotationQuat, 0.02)
 	
 	var rotatedEuler = Basis(rotatedQuat).get_euler()
