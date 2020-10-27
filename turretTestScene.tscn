@@ -1,31 +1,28 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=3 format=2]
 
 [ext_resource path="res://ships/turret_large1.tscn" type="PackedScene" id=1]
 [ext_resource path="res://ships/fighter_headhunter.tscn" type="PackedScene" id=2]
-[ext_resource path="res://ships/destroyer_phoenix.tscn" type="PackedScene" id=3]
 
 [node name="Spatial" type="Spatial"]
 
 [node name="turret_large1" parent="." instance=ExtResource( 1 )]
-visible = false
+target_path = NodePath("../fighter_headhunter")
+
+[node name="turret_large4" parent="." instance=ExtResource( 1 )]
+transform = Transform( 1, 0, 0, 0, -1, 3.25841e-07, 0, -3.25841e-07, -1, 0, 1.51074, 0 )
 target_path = NodePath("../fighter_headhunter")
 
 [node name="turret_large2" parent="." instance=ExtResource( 1 )]
-transform = Transform( 1, 0, 0, 0, 0.707107, -0.707107, 0, 0.707107, 0.707107, -1.0232, 0, 0 )
-visible = false
+transform = Transform( 1, 0, 0, 0, -1.62921e-07, -1, 0, 1, -1.62921e-07, -1, 0, 0 )
 target_path = NodePath("../fighter_headhunter")
 
 [node name="turret_large3" parent="." instance=ExtResource( 1 )]
-transform = Transform( 0.707107, 0.707107, 0, -0.707107, 0.707107, 0, 0, 0, 1, -2.12004, 0, 0 )
-visible = false
+transform = Transform( -1.62921e-07, -1, 0, 1, -1.62921e-07, 0, 0, 0, 1, 1, 0, 0 )
 target_path = NodePath("../fighter_headhunter")
 
 [node name="fighter_headhunter" parent="." instance=ExtResource( 2 )]
 transform = Transform( -0.16359, -0.426982, -0.889339, 0.703026, 0.581974, -0.408731, 0.692093, -0.692093, 0.204974, 32.1391, 18.1096, 9.51465 )
 
 [node name="Camera" type="Camera" parent="."]
-transform = Transform( -1, -3.19744e-14, -8.74228e-08, -1.19115e-08, 0.990674, 0.136252, 8.66075e-08, 0.136252, -0.990674, 0, 0.733, -0.75 )
+transform = Transform( -1, -4.43964e-08, 3.22803e-07, 0, 0.990674, 0.136252, -3.25841e-07, 0.136252, -0.990674, 0, 0.733, -0.75 )
 fov = 90.0
-
-[node name="destroyer_phoenix" parent="." instance=ExtResource( 3 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.41482, -1.95626 )
